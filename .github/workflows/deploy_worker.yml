@@ -1,0 +1,7 @@
+name: Worker Workflow
+run-name: Deploy Worker
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+    branches: ["**"]
