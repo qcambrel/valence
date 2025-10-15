@@ -1,7 +1,7 @@
 import os
 from app.jobs import sign_hmac
 
-APIH = {"X-API-Key": "test"}
+APIH = {"X-API-Key": "secret"}
 
 def test_async_submit_and_webhook(app_client, put_input_video, stub_runpod_async, stub_rekognition, monkeypatch):
     monkeypatch.setenv("MODERATION_ENABLED", "1")

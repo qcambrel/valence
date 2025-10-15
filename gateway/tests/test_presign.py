@@ -1,4 +1,4 @@
-APIH = {"X-API-Key": "test"}
+APIH = {"X-API-Key": "secret"}
 
 def test_presign_upload_and_download(app_client, s3_setup):
     r = app_client.post("/presign/upload?object_key=uploads/test.mp4", headers=APIH)
