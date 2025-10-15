@@ -1,0 +1,9 @@
+gateway/app/__pycache__/
+gateway/tests/__pycache__/
+
+worker/service/__pycache__/
+worker/tests/__pycache__/
+
+.pytest_cache/
+
+.DS_Store
