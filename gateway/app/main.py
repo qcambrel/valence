@@ -1,19 +1,17 @@
 import time 
 import hmac
 import hashlib
-
 from fastapi import FastAPI, HTTPException, Header, Request
 from fastapi.middleware.cors import CORSMiddleware
-
-from .config import settings
-from .schemas import (
+from app.config import settings
+from app.schemas import (
     SubmitRequest, SubmitResponse, VSRRequest, VSRResponse,
     StatusResponse, PresignUploadOut, PresignDownloadOut
 )
-from .presign import presign_get, presign_put
-from .moderation import moderate_video
-from .vsr_client import run_vsr, RunpodError
-from .jobs import Jobs, sign_hmac
+from app.presign import presign_get, presign_put
+from app.moderation import moderate_video
+from app.vsr_client import run_vsr, RunpodError
+from app.jobs import Jobs, sign_hmac
 
 app = FastAPI(title="Valence Gateway")
 

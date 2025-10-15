@@ -1,7 +1,6 @@
 import boto3
-
-from .config import settings
-from .constants import CONTENT_TYPE_MP4
+from app.config import settings
+from app.constants import CONTENT_TYPE_MP4
 
 s3_client = boto3.client("s3", region_name=settings.aws_region)
 

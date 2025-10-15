@@ -1,6 +1,5 @@
 import requests
-
-from .config import settings
+from app.config import settings
 
 RUNSYNC_URL = f"https://api.runpod.ai/v2/{settings.runpod_endpoint_id}/runsync"
 RUN_URL     = f"https://api.runpod.ai/v2/{settings.runpod_endpoint_id}/run"

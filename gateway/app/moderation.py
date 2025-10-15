@@ -1,9 +1,7 @@
 import time
-
 import boto3
-
-from .config import settings
-from .constants import BLOCKED_CATEGORIES
+from app.config import settings
+from app.constants import BLOCKED_CATEGORIES
 
 rek_client = boto3.client("rekognition", region_name=settings.aws_region)
 

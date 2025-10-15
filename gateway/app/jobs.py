@@ -1,16 +1,12 @@
 import os
 import time
 import hmac
-import hashlib
-
 import boto3
-
+import hashlib
 from typing import Optional
 from dataclasses import dataclass, asdict
-
 from botocore.exceptions import ClientError
-
-from .config import settings
+from app.config import settings
 
 @dataclass
 class JobRow:
