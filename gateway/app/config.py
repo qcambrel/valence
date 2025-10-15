@@ -11,7 +11,7 @@ class Settings(BaseModel):
     aws_region: str = os.environ.get("AWS_REGION", "us-east-1")
     bucket: str = os.environ.get("S3_BUCKET", "test-bucket")
 
-    moderation_enabled: bool = os.environ.get("MODERATION_ENABLED", "0") == "1"
+    moderation_enabled: bool = os.environ.get("MODERATION_ENABLED", "1") == "1"
     moderation_threshold: int = int(os.environ.get("MODERATION_THRESHOLD", "80"))
     moderation_timeout: int = int(os.environ.get("MODERATION_TIMEOUT", "600"))
 

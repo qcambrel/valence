@@ -3,8 +3,8 @@ from app.jobs import sign_hmac
 
 APIH = {"X-API-Key": "test"}
 
-def test_async_submit_and_webhook(app_client, put_input_video, stub_runpod_async, monkeypatch):
-    monkeypatch.setenv("MODERATION_ENABLED", "0")
+def test_async_submit_and_webhook(app_client, put_input_video, stub_runpod_async, stub_rekognition, monkeypatch):
+    monkeypatch.setenv("MODERATION_ENABLED", "1")
     body = {
         "object_key": put_input_video,
         "scale": 2,

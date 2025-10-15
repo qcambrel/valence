@@ -1,10 +1,9 @@
 import os
-import importlib
-
 import boto3
 import pytest
-
+import importlib
 from moto import mock_aws
+from botocore.stub import Stubber, ANY
 
 @pytest.fixture(scope="function")
 def aws_credentials(monkeypatch):
@@ -77,3 +76,27 @@ def put_input_video(s3_setup):
     print(f"Uploading {key} to {bucket}")
     s3_setup.put_object(Bucket=bucket, Key=key, Body=b"data", ContentType="video/mp4")
     return key
+
+@pytest.fixture(scope="function")
+def stub_rekognition(monkeypatch):
+    """Stub Rekognition client for testing moderation."""
+    client = boto3.client("rekognition", region_name=os.getenv("AWS_REGION","us-east-1"))
+    stubber = Stubber(client)
+    # StartContentModeration → returns a JobId
+    stubber.add_response(
+        "start_content_moderation",
+        {"JobId": "job-123"},
+        {"Video": {"S3Object": {"Bucket": ANY, "Name": ANY}}}
+    )
+    # GetContentModeration → succeeds with no labels
+    stubber.add_response(
+        "get_content_moderation",
+        {"JobStatus": "SUCCEEDED", "ModerationLabels": []},
+        {"JobId": "job-123"}
+    )
+    stubber.activate()
+    # Patch the module-level client your app uses
+    import app.moderation as mod
+    monkeypatch.setattr(mod, "rek_client", client)
+    yield
+    stubber.deactivate()
